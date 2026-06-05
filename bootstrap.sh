@@ -1,4 +1,9 @@
 #!/bin/bash
+# If invoked via sh/dash (common when script has no execute bit), re-exec with bash.
+# This script uses bashisms (echo -e, &>) that break under dash.
+if [ -z "${BASH_VERSION:-}" ]; then
+    exec /bin/bash "$0" "$@"
+fi
 set -e
 
 # ============================================================
@@ -37,7 +42,7 @@ fi
 sudo tailscale up
 echo ""
 echo -e "${GREEN}>>> 请在浏览器中完成 Tailscale 登录，确认 VPS 在 admin console 里 online 后按回车继续${NC}"
-read -r
+read -r REPLY
 ok "Tailscale 已就绪"
 
 # -------------------------------------------------------------------
