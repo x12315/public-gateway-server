@@ -1,0 +1,11 @@
+[Unit]
+Description=Tailscale DERP Server
+After=network.target
+
+[Service]
+ExecStart=/root/go/bin/derper -hostname=derp.yourdomain.com -a :12345 -stun-port 3478
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

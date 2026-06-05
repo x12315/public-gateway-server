@@ -1,0 +1,25 @@
+# ============================================================
+# Caddyfile — VPS 反向代理配置
+# 修改此文件后: sudo systemctl reload caddy
+# ============================================================
+
+{
+    email your-email@example.com
+    # 如果用非标端口避备案，取消下面这行的注释:
+    # https_port 8443
+}
+
+# 根域名 — 健康检查 / 临时占位
+yourdomain.com {
+    respond "ok" 200
+}
+
+# 示例：反代到家里 HomeAssistant（取消注释并填实际值）
+# home.yourdomain.com {
+#     reverse_proxy 100.64.0.2:8123
+# }
+
+# 示例：反代到家里 Jellyfin
+# nas.yourdomain.com {
+#     reverse_proxy 100.64.0.2:8096
+# }
